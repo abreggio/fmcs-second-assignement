@@ -1,0 +1,32 @@
+from "lib:cif" import *;
+
+if not exists("../generated"):
+    mkdir("../generated");
+end
+
+tooldef("build-uncontrolled.tooldef");
+
+cifmerge(
+   "../generated/uncontrolled-plant.cif",
+    "../requirements/R1.cif",
+    "../requirements/R2_g.cif",
+    "../requirements/R2_m.cif",
+    "../requirements/R2_t.cif",
+   "-o tmp.cif"
+);
+
+cifsupsynth(
+    "tmp.cif",
+    "-o supervisor.cif",
+    "-n supervisor" // name the automaton
+);
+
+cifmerge(
+   "../generated/uncontrolled-plant.cif",
+   "supervisor.cif",
+   "-o ../generated/controlled-plant.cif"
+);
+
+rmfile("tmp.cif");
+//rmfile("supervisor.cif");
+

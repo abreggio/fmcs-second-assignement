@@ -1,0 +1,35 @@
+import "events.cif";
+
+plant automaton Elevator:
+
+    location f_ground:
+        initial; marked;
+        edge ascend_m goto f_middle;
+        edge descend_g;
+
+    location f_middle:
+        marked;
+        edge ascend_t goto f_top;
+        edge descend_g goto f_ground;
+        edge ascend_m;
+        edge descend_m;
+    location f_top:
+        marked;
+        edge ascend_t;
+        edge descend_m goto f_middle;
+
+end
+
+svgfile "elevator.svg";
+
+svgout id "elevator_m" attr "visibility" value if Elevator.f_middle : "visible"
+                                                                    else "hidden"
+                                                                    end;
+
+svgout id "elevator_g" attr "visibility" value if Elevator.f_ground : "visible"
+                                                                    else "hidden"
+                                                                    end;
+
+svgout id "elevator_t" attr "visibility" value if Elevator.f_top : "visible"
+                                                                    else "hidden"
+                                                                    end;

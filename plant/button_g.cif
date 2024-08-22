@@ -1,0 +1,23 @@
+import "events.cif";
+
+plant button_floor_ground:
+    location idle:
+        initial; marked;
+        edge call_g goto called;
+        edge close;
+        edge descend_g;
+    location called:
+        marked;
+        edge close;
+        edge call_g;
+        edge descend_g goto wait;
+    location wait:
+        edge call_g;
+        edge descend_g;
+        edge close goto idle;
+end
+
+svgfile "elevator.svg";
+svgout id "button_g_idle" attr "display" value if button_floor_ground.idle : "inline"
+                                                                        else "none"
+                                                                        end;

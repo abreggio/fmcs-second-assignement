@@ -1,0 +1,14 @@
+from "lib:cif" import *;
+
+if not exists("../generated"):
+    mkdir("../generated");
+end
+
+cifmerge(
+   "../plant/button_g.cif",
+   "../plant/button_t.cif",
+   "../plant/button_m.cif",
+   "../plant/elevator.cif",
+   "../plant/door.cif",
+   "-o ../generated/uncontrolled-plant.cif"
+);

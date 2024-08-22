@@ -1,0 +1,22 @@
+import "events.cif";
+
+plant door:
+    location closed:
+        initial; marked;
+        edge open goto opened;
+    location opened:
+        edge close goto closed;
+
+end
+
+
+svgfile "elevator.svg";
+svgout id "elevator_closed_g" attr "display" value if door.closed : "inline"
+                                                                else "none"
+                                                                end;
+svgout id "elevator_closed_m" attr "display" value if door.closed : "inline"
+                                                                else "none"
+                                                                end;
+svgout id "elevator_closed_t" attr "display" value if door.closed : "inline"
+                                                                else "none"
+                                                                end;

@@ -1,0 +1,3 @@
+controllable ascend_m, ascend_t, descend_m, descend_g;
+controllable open, close;
+uncontrollable call_g, call_m, call_t;

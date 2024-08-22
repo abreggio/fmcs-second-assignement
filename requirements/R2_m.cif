@@ -1,0 +1,25 @@
+import "../plant/events.cif";
+
+requirement R2_m:
+    location serve_1:
+        marked;
+        edge call_m;
+        edge close goto served;
+    location served:
+        initial;
+        marked;
+        edge close;
+        edge descend_m;
+        edge ascend_m;
+        edge descend_g;
+        edge ascend_t;
+        edge call_m goto called;
+    location called:
+        marked;
+        edge close;
+        edge call_m;
+        edge descend_g;
+        edge ascend_t;
+        edge descend_m goto serve_1;
+        edge ascend_m goto serve_1;
+end

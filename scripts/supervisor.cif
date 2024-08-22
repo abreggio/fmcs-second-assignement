@@ -1,0 +1,597 @@
+uncontrollable call_g;
+controllable close;
+controllable descend_g;
+uncontrollable call_m;
+controllable ascend_m;
+controllable descend_m;
+uncontrollable call_t;
+controllable ascend_t;
+controllable open;
+supervisor automaton $supervisor:
+  alphabet call_g, close, descend_g, call_m, ascend_m, descend_m, call_t, ascend_t, open;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "served")
+  location s1:
+    initial;
+    marked;
+    edge open goto s2;
+    edge call_t goto s3;
+    edge ascend_m goto s4;
+    edge call_m goto s5;
+    edge descend_g;
+    edge call_g goto s6;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "served")
+  location s2:
+    edge call_t goto s19;
+    edge ascend_m goto s15;
+    edge call_m goto s12;
+    edge descend_g;
+    edge close goto s1;
+    edge call_g goto s7;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "called")
+  location s3:
+    marked;
+    edge open goto s19;
+    edge call_t;
+    edge ascend_m goto s17;
+    edge call_m goto s13;
+    edge descend_g;
+    edge call_g goto s8;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "served")
+  location s4:
+    marked;
+    edge open goto s15;
+    edge ascend_t goto s16;
+    edge call_t goto s17;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s18;
+    edge descend_g goto s1;
+    edge call_g goto s9;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "served")
+  location s5:
+    marked;
+    edge open goto s12;
+    edge call_t goto s13;
+    edge ascend_m goto s14;
+    edge call_m;
+    edge descend_g;
+    edge call_g goto s10;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "served")
+  location s6:
+    marked;
+    edge open goto s7;
+    edge call_t goto s8;
+    edge ascend_m goto s9;
+    edge call_m goto s10;
+    edge descend_g goto s11;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "served")
+  location s7:
+    edge call_t goto s30;
+    edge ascend_m goto s26;
+    edge call_m goto s23;
+    edge descend_g goto s20;
+    edge close goto s6;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "called")
+  location s8:
+    marked;
+    edge open goto s30;
+    edge call_t;
+    edge ascend_m goto s28;
+    edge call_m goto s24;
+    edge descend_g goto s21;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "served")
+  location s9:
+    marked;
+    edge open goto s26;
+    edge ascend_t goto s27;
+    edge call_t goto s28;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s29;
+    edge descend_g goto s11;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "served")
+  location s10:
+    marked;
+    edge open goto s23;
+    edge call_t goto s24;
+    edge ascend_m goto s25;
+    edge call_m;
+    edge descend_g goto s22;
+    edge call_g;
+  @state(button_floor_ground: "wait", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "serve_1", R2_m: "served", R2_t: "served")
+  location s11:
+    edge open goto s20;
+    edge call_t goto s21;
+    edge call_m goto s22;
+    edge call_g;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "served")
+  location s12:
+    edge call_t goto s33;
+    edge ascend_m goto s31;
+    edge call_m;
+    edge descend_g;
+    edge close goto s5;
+    edge call_g goto s23;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "called")
+  location s13:
+    marked;
+    edge open goto s33;
+    edge call_t;
+    edge ascend_m goto s32;
+    edge call_m;
+    edge descend_g;
+    edge call_g goto s24;
+  @state(button_floor_ground: "idle", button_floor_middle: "wait", button_floor_top: "idle", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "served", R2_m: "serve_1", R2_t: "served")
+  location s14:
+    edge open goto s31;
+    edge call_t goto s32;
+    edge call_m;
+    edge call_g goto s25;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "served")
+  location s15:
+    edge ascend_t goto s39;
+    edge call_t goto s37;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s34;
+    edge descend_g goto s2;
+    edge close goto s4;
+    edge call_g goto s26;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "served")
+  location s16:
+    marked;
+    edge open goto s39;
+    edge ascend_t;
+    edge call_t goto s40;
+    edge descend_m goto s4;
+    edge call_m goto s35;
+    edge call_g goto s27;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "called")
+  location s17:
+    marked;
+    edge open goto s37;
+    edge ascend_t goto s38;
+    edge call_t;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s36;
+    edge descend_g goto s3;
+    edge call_g goto s28;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "served")
+  location s18:
+    marked;
+    edge open goto s34;
+    edge ascend_t goto s35;
+    edge call_t goto s36;
+    edge descend_m goto s14;
+    edge ascend_m goto s14;
+    edge call_m;
+    edge descend_g goto s5;
+    edge call_g goto s29;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "called")
+  location s19:
+    edge call_t;
+    edge ascend_m goto s37;
+    edge call_m goto s33;
+    edge descend_g;
+    edge close goto s3;
+    edge call_g goto s30;
+  @state(button_floor_ground: "wait", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "serve_1", R2_m: "served", R2_t: "served")
+  location s20:
+    edge call_t goto s43;
+    edge call_m goto s41;
+    edge close goto s1;
+    edge call_g;
+  @state(button_floor_ground: "wait", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "serve_1", R2_m: "served", R2_t: "called")
+  location s21:
+    edge open goto s43;
+    edge call_t;
+    edge call_m goto s42;
+    edge call_g;
+  @state(button_floor_ground: "wait", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "serve_1", R2_m: "called", R2_t: "served")
+  location s22:
+    edge open goto s41;
+    edge call_t goto s42;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "served")
+  location s23:
+    edge call_t goto s46;
+    edge ascend_m goto s44;
+    edge call_m;
+    edge descend_g goto s41;
+    edge close goto s10;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "called")
+  location s24:
+    marked;
+    edge open goto s46;
+    edge call_t;
+    edge ascend_m goto s45;
+    edge call_m;
+    edge descend_g goto s42;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "wait", button_floor_top: "idle", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "called", R2_m: "serve_1", R2_t: "served")
+  location s25:
+    edge open goto s44;
+    edge call_t goto s45;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "served")
+  location s26:
+    edge ascend_t goto s52;
+    edge call_t goto s50;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s47;
+    edge descend_g goto s20;
+    edge close goto s9;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "idle", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "served")
+  location s27:
+    marked;
+    edge open goto s52;
+    edge ascend_t;
+    edge call_t goto s53;
+    edge descend_m goto s9;
+    edge call_m goto s48;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "called")
+  location s28:
+    marked;
+    edge open goto s50;
+    edge ascend_t goto s51;
+    edge call_t;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s49;
+    edge descend_g goto s21;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "served")
+  location s29:
+    marked;
+    edge open goto s47;
+    edge ascend_t goto s48;
+    edge call_t goto s49;
+    edge descend_m goto s25;
+    edge ascend_m goto s25;
+    edge call_m;
+    edge descend_g goto s22;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "called")
+  location s30:
+    edge call_t;
+    edge ascend_m goto s50;
+    edge call_m goto s46;
+    edge descend_g goto s43;
+    edge close goto s8;
+    edge call_g;
+  @state(button_floor_ground: "idle", button_floor_middle: "wait", button_floor_top: "idle", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "served", R2_m: "serve_1", R2_t: "served")
+  location s31:
+    edge call_t goto s54;
+    edge call_m;
+    edge close goto s4;
+    edge call_g goto s44;
+  @state(button_floor_ground: "idle", button_floor_middle: "wait", button_floor_top: "called", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "served", R2_m: "serve_1", R2_t: "called")
+  location s32:
+    edge open goto s54;
+    edge call_t;
+    edge call_m;
+    edge call_g goto s45;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "called")
+  location s33:
+    edge call_t;
+    edge ascend_m goto s54;
+    edge call_m;
+    edge descend_g;
+    edge close goto s13;
+    edge call_g goto s46;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "served")
+  location s34:
+    edge ascend_t goto s57;
+    edge call_t goto s55;
+    edge descend_m goto s31;
+    edge ascend_m goto s31;
+    edge call_m;
+    edge descend_g goto s12;
+    edge close goto s18;
+    edge call_g goto s47;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "served")
+  location s35:
+    marked;
+    edge open goto s57;
+    edge ascend_t;
+    edge call_t goto s58;
+    edge descend_m goto s14;
+    edge call_m;
+    edge call_g goto s48;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "called")
+  location s36:
+    marked;
+    edge open goto s55;
+    edge ascend_t goto s56;
+    edge call_t;
+    edge descend_m goto s32;
+    edge ascend_m goto s32;
+    edge call_m;
+    edge descend_g goto s13;
+    edge call_g goto s49;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "called")
+  location s37:
+    edge ascend_t goto s59;
+    edge call_t;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s55;
+    edge descend_g goto s19;
+    edge close goto s17;
+    edge call_g goto s50;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "wait", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "serve_1")
+  location s38:
+    edge open goto s59;
+    edge call_t;
+    edge call_m goto s56;
+    edge call_g goto s51;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "served")
+  location s39:
+    edge ascend_t;
+    edge call_t goto s60;
+    edge descend_m goto s15;
+    edge call_m goto s57;
+    edge close goto s16;
+    edge call_g goto s52;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "served", R2_m: "served", R2_t: "called")
+  location s40:
+    marked;
+    edge open goto s60;
+    edge ascend_t goto s38;
+    edge call_t;
+    edge descend_m goto s17;
+    edge call_m goto s58;
+    edge call_g goto s53;
+  @state(button_floor_ground: "wait", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "serve_1", R2_m: "called", R2_t: "served")
+  location s41:
+    edge call_t goto s61;
+    edge call_m;
+    edge close goto s5;
+    edge call_g;
+  @state(button_floor_ground: "wait", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_ground", R1: "closed", R2_g: "serve_1", R2_m: "called", R2_t: "called")
+  location s42:
+    edge open goto s61;
+    edge call_t;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "wait", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "serve_1", R2_m: "served", R2_t: "called")
+  location s43:
+    edge call_t;
+    edge call_m goto s61;
+    edge close goto s3;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "wait", button_floor_top: "idle", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "called", R2_m: "serve_1", R2_t: "served")
+  location s44:
+    edge call_t goto s62;
+    edge call_m;
+    edge close goto s9;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "wait", button_floor_top: "called", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "called", R2_m: "serve_1", R2_t: "called")
+  location s45:
+    edge open goto s62;
+    edge call_t;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "called")
+  location s46:
+    edge call_t;
+    edge ascend_m goto s62;
+    edge call_m;
+    edge descend_g goto s61;
+    edge close goto s24;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "served")
+  location s47:
+    edge ascend_t goto s65;
+    edge call_t goto s63;
+    edge descend_m goto s44;
+    edge ascend_m goto s44;
+    edge call_m;
+    edge descend_g goto s41;
+    edge close goto s29;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "idle", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "served")
+  location s48:
+    marked;
+    edge open goto s65;
+    edge ascend_t;
+    edge call_t goto s66;
+    edge descend_m goto s25;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_middle", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "called")
+  location s49:
+    marked;
+    edge open goto s63;
+    edge ascend_t goto s64;
+    edge call_t;
+    edge descend_m goto s45;
+    edge ascend_m goto s45;
+    edge call_m;
+    edge descend_g goto s42;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "called")
+  location s50:
+    edge ascend_t goto s67;
+    edge call_t;
+    edge descend_m;
+    edge ascend_m;
+    edge call_m goto s63;
+    edge descend_g goto s43;
+    edge close goto s28;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "wait", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "serve_1")
+  location s51:
+    edge open goto s67;
+    edge call_t;
+    edge call_m goto s64;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "idle", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "served")
+  location s52:
+    edge ascend_t;
+    edge call_t goto s68;
+    edge descend_m goto s26;
+    edge call_m goto s65;
+    edge close goto s27;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "called", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "called", R2_m: "served", R2_t: "called")
+  location s53:
+    marked;
+    edge open goto s68;
+    edge ascend_t goto s51;
+    edge call_t;
+    edge descend_m goto s28;
+    edge call_m goto s66;
+    edge call_g;
+  @state(button_floor_ground: "idle", button_floor_middle: "wait", button_floor_top: "called", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "served", R2_m: "serve_1", R2_t: "called")
+  location s54:
+    edge call_t;
+    edge call_m;
+    edge close goto s17;
+    edge call_g goto s62;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "called")
+  location s55:
+    edge ascend_t goto s69;
+    edge call_t;
+    edge descend_m goto s54;
+    edge ascend_m goto s54;
+    edge call_m;
+    edge descend_g goto s33;
+    edge close goto s36;
+    edge call_g goto s63;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "wait", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "serve_1")
+  location s56:
+    edge open goto s69;
+    edge call_t;
+    edge call_m;
+    edge call_g goto s64;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "served")
+  location s57:
+    edge ascend_t;
+    edge call_t goto s70;
+    edge descend_m goto s31;
+    edge call_m;
+    edge close goto s35;
+    edge call_g goto s65;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "served", R2_m: "called", R2_t: "called")
+  location s58:
+    marked;
+    edge open goto s70;
+    edge ascend_t goto s56;
+    edge call_t;
+    edge descend_m goto s32;
+    edge call_m;
+    edge call_g goto s66;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "wait", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "serve_1")
+  location s59:
+    edge call_t;
+    edge call_m goto s69;
+    edge close goto s16;
+    edge call_g goto s67;
+  @state(button_floor_ground: "idle", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "served", R2_m: "served", R2_t: "called")
+  location s60:
+    edge ascend_t goto s59;
+    edge call_t;
+    edge descend_m goto s37;
+    edge call_m goto s70;
+    edge close goto s40;
+    edge call_g goto s68;
+  @state(button_floor_ground: "wait", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_ground", R1: "opened", R2_g: "serve_1", R2_m: "called", R2_t: "called")
+  location s61:
+    edge call_t;
+    edge call_m;
+    edge close goto s13;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "wait", button_floor_top: "called", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "called", R2_m: "serve_1", R2_t: "called")
+  location s62:
+    edge call_t;
+    edge call_m;
+    edge close goto s28;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_middle", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "called")
+  location s63:
+    edge ascend_t goto s71;
+    edge call_t;
+    edge descend_m goto s62;
+    edge ascend_m goto s62;
+    edge call_m;
+    edge descend_g goto s61;
+    edge close goto s49;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "wait", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "serve_1")
+  location s64:
+    edge open goto s71;
+    edge call_t;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "idle", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "served")
+  location s65:
+    edge ascend_t;
+    edge call_t goto s72;
+    edge descend_m goto s44;
+    edge call_m;
+    edge close goto s48;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "called", door: "closed", Elevator: "f_top", R1: "closed", R2_g: "called", R2_m: "called", R2_t: "called")
+  location s66:
+    marked;
+    edge open goto s72;
+    edge ascend_t goto s64;
+    edge call_t;
+    edge descend_m goto s45;
+    edge call_m;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "wait", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "serve_1")
+  location s67:
+    edge call_t;
+    edge call_m goto s71;
+    edge close goto s27;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "idle", button_floor_top: "called", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "called", R2_m: "served", R2_t: "called")
+  location s68:
+    edge ascend_t goto s67;
+    edge call_t;
+    edge descend_m goto s50;
+    edge call_m goto s72;
+    edge close goto s53;
+    edge call_g;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "wait", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "serve_1")
+  location s69:
+    edge call_t;
+    edge call_m;
+    edge close goto s35;
+    edge call_g goto s71;
+  @state(button_floor_ground: "idle", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "served", R2_m: "called", R2_t: "called")
+  location s70:
+    edge ascend_t goto s69;
+    edge call_t;
+    edge descend_m goto s54;
+    edge call_m;
+    edge close goto s58;
+    edge call_g goto s72;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "wait", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "serve_1")
+  location s71:
+    edge call_t;
+    edge call_m;
+    edge close goto s48;
+    edge call_g;
+  @state(button_floor_ground: "called", button_floor_middle: "called", button_floor_top: "called", door: "opened", Elevator: "f_top", R1: "opened", R2_g: "called", R2_m: "called", R2_t: "called")
+  location s72:
+    edge ascend_t goto s71;
+    edge call_t;
+    edge descend_m goto s62;
+    edge call_m;
+    edge close goto s66;
+    edge call_g;
+end
